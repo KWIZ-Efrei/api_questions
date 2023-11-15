@@ -1,0 +1,8 @@
+com/gclefrei/apiquestions/entities/Question.class
+com/gclefrei/apiquestions/controllers/QuestionController.class
+com/gclefrei/apiquestions/dtos/SentQuestion.class
+com/gclefrei/apiquestions/ApiquestionsApplication.class
+com/gclefrei/apiquestions/services/QuestionService.class
+com/gclefrei/apiquestions/services/QuestionServiceImpl.class
+com/gclefrei/apiquestions/dtos/QuestionCreation.class
+com/gclefrei/apiquestions/repositories/QuestionRepository.class

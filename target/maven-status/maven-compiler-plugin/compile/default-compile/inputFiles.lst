@@ -1,0 +1,8 @@
+/Users/hugo.moreau/Documents/Projet Perso/cloudM2/api_questions/src/main/java/com/gclefrei/apiquestions/services/QuestionService.java
+/Users/hugo.moreau/Documents/Projet Perso/cloudM2/api_questions/src/main/java/com/gclefrei/apiquestions/dtos/QuestionCreation.java
+/Users/hugo.moreau/Documents/Projet Perso/cloudM2/api_questions/src/main/java/com/gclefrei/apiquestions/ApiquestionsApplication.java
+/Users/hugo.moreau/Documents/Projet Perso/cloudM2/api_questions/src/main/java/com/gclefrei/apiquestions/entities/Question.java
+/Users/hugo.moreau/Documents/Projet Perso/cloudM2/api_questions/src/main/java/com/gclefrei/apiquestions/repositories/QuestionRepository.java
+/Users/hugo.moreau/Documents/Projet Perso/cloudM2/api_questions/src/main/java/com/gclefrei/apiquestions/controllers/QuestionController.java
+/Users/hugo.moreau/Documents/Projet Perso/cloudM2/api_questions/src/main/java/com/gclefrei/apiquestions/dtos/SentQuestion.java
+/Users/hugo.moreau/Documents/Projet Perso/cloudM2/api_questions/src/main/java/com/gclefrei/apiquestions/services/QuestionServiceImpl.java
