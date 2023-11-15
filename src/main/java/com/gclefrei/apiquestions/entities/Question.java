@@ -13,10 +13,10 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "QUESTION_TEXT", length = 255, nullable = false, unique = false)
+    @Column(name = "QUESTION_TEXT", nullable = false)
     private String question;
 
-    @Column(name = "RIGHT_ANSWER", length = 255, nullable = false, unique = false)
+    @Column(name = "RIGHT_ANSWER", nullable = false)
     private String rightAnswer;
 
     @ElementCollection

@@ -5,7 +5,6 @@ import com.gclefrei.apiquestions.dtos.SentQuestion;
 import com.gclefrei.apiquestions.entities.Question;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface QuestionService {
