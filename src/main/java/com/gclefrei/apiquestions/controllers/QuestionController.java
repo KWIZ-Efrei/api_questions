@@ -1,6 +1,8 @@
 package com.gclefrei.apiquestions.controllers;
 
+import com.gclefrei.apiquestions.dtos.AnswerAttempt;
 import com.gclefrei.apiquestions.dtos.QuestionCreation;
+import com.gclefrei.apiquestions.dtos.SentQuestion;
 import com.gclefrei.apiquestions.entities.Question;
 import com.gclefrei.apiquestions.services.QuestionService;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,16 @@ public class QuestionController {
     @GetMapping("/questions/{questionId}")
     Question getQuestionById(@PathVariable UUID questionId) {
         return service.getQuestionById(questionId);
+    }
+
+    @GetMapping("/questions/random/{quantity}")
+    List<SentQuestion> getRandomQuestions(@PathVariable int quantity) {
+        return service.getGameQuestions(quantity);
+    }
+
+    @PostMapping("/questions/answer/{questionId}")
+    boolean attemptAnAnswer(@PathVariable UUID questionId, @RequestBody AnswerAttempt answerAttempt) {
+        return service.verifyAnswer(questionId, answerAttempt.getAttemptedAnwser());
     }
 
     @PostMapping("/questions")

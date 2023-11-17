@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -51,7 +49,26 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<SentQuestion> getGameQuestions() {
-        return null;
+    public List<SentQuestion> getGameQuestions(int quantity) {
+        return repository.getRandomQuestions(quantity).stream().map(this::mapQuestionToSentQuestion).toList();
+    }
+
+    @Override
+    public boolean verifyAnswer(UUID questionId, String attemptedAnswer) {
+        Question question = getQuestionById(questionId);
+        return question.getRightAnswer().equals(attemptedAnswer);
+    }
+
+    private SentQuestion mapQuestionToSentQuestion(Question question) {
+        SentQuestion sentQuestion = new SentQuestion();
+        sentQuestion.setQuestionText(question.getQuestion());
+        sentQuestion.setId(question.getId());
+
+        ArrayList<String> responses = new ArrayList<>(question.getWrongAnswers());
+        responses.add(question.getRightAnswer());
+        Collections.shuffle(responses);
+
+        sentQuestion.setAnswers(responses);
+        return sentQuestion;
     }
 }

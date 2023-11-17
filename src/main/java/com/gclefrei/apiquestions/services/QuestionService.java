@@ -17,5 +17,7 @@ public interface QuestionService {
 
     List<Question> getAllQuestions();
 
-    List<SentQuestion> getGameQuestions();
+    List<SentQuestion> getGameQuestions(int quantity);
+
+    boolean verifyAnswer(UUID questionId, String attemptedAnswer);
 }

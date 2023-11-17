@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
-
+@Entity(name = "QUESTION")
 public class Question {
 
     @Id
@@ -20,6 +19,7 @@ public class Question {
     private String rightAnswer;
 
     @ElementCollection
+    @Column(name = "WRONG_ANSWERS", nullable = false)
     private List<String> wrongAnswers;
 
     public UUID getId() {
