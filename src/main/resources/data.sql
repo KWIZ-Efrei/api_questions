@@ -1,5 +1,19 @@
-DELETE FROM question_wrong_answers;
-DELETE FROM question;
+-- Check if question_wrong_answers table exists
+DO $$
+    BEGIN
+        IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'question_wrong_answers') THEN
+            DELETE FROM question_wrong_answers;
+        END IF;
+    END $$;
+
+-- Check if question table exists
+DO $$
+    BEGIN
+        IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'question') THEN
+            DELETE FROM question;
+        END IF;
+    END $$;
+
 
 INSERT INTO question (id, QUESTION_TEXT, RIGHT_ANSWER)
 VALUES (
