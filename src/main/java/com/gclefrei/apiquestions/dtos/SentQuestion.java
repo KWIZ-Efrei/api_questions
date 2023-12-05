@@ -3,7 +3,7 @@ package com.gclefrei.apiquestions.dtos;
 import java.util.List;
 import java.util.UUID;
 
-public class SentQuestion {
+public class  SentQuestion {
     private UUID id;
     private String questionText;
     private List<String> answers;

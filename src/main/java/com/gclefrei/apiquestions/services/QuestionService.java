@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface QuestionService {
 
-    Question getQuestionById(UUID questionId);
+    SentQuestion getSentQuestionById(UUID questionId);
 
     void createQuestion(QuestionCreation questionCreation);
 
@@ -18,6 +18,8 @@ public interface QuestionService {
     List<Question> getAllQuestions();
 
     List<SentQuestion> getGameQuestions(int quantity);
+
+    List<SentQuestion> getSentQuestionsByIds(List<UUID> questionsIds);
 
     boolean verifyAnswer(UUID questionId, String attemptedAnswer);
 }

@@ -20,9 +20,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Question getQuestionById(UUID questionId){
-        return repository.findById(questionId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public SentQuestion getSentQuestionById(UUID questionId){
+        return mapQuestionToSentQuestion(getQuestionById(questionId));
     }
 
     @Override
@@ -54,9 +53,19 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<SentQuestion> getSentQuestionsByIds(List<UUID> questionsIds) {
+        return repository.findByIdIn(questionsIds).stream().map(this::mapQuestionToSentQuestion).toList();
+    }
+
+    @Override
     public boolean verifyAnswer(UUID questionId, String attemptedAnswer) {
         Question question = getQuestionById(questionId);
         return question.getRightAnswer().equals(attemptedAnswer);
+    }
+
+    private Question getQuestionById(UUID questionId){
+        return repository.findById(questionId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     private SentQuestion mapQuestionToSentQuestion(Question question) {

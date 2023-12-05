@@ -1,6 +1,7 @@
 package com.gclefrei.apiquestions.controllers;
 
 import com.gclefrei.apiquestions.dtos.AnswerAttempt;
+import com.gclefrei.apiquestions.dtos.ListOfQuestionIds;
 import com.gclefrei.apiquestions.dtos.QuestionCreation;
 import com.gclefrei.apiquestions.dtos.SentQuestion;
 import com.gclefrei.apiquestions.entities.Question;
@@ -24,9 +25,9 @@ public class QuestionController {
         return service.getAllQuestions();
     }
 
-    @GetMapping("/questions/{questionId}")
-    Question getQuestionById(@PathVariable UUID questionId) {
-        return service.getQuestionById(questionId);
+    @GetMapping("/sent-questions/{questionId}")
+    SentQuestion getSentQuestionById(@PathVariable UUID questionId) {
+        return service.getSentQuestionById(questionId);
     }
 
     @GetMapping("/questions/random/{quantity}")
@@ -42,6 +43,11 @@ public class QuestionController {
     @PostMapping("/questions")
     void createQuestion(@RequestBody QuestionCreation questionInfos) {
         service.createQuestion(questionInfos);
+    }
+
+    @PostMapping("/sent-questions-by-id")
+    List<SentQuestion> getQuestionsByIds(@RequestBody ListOfQuestionIds ids){
+        return service.getSentQuestionsByIds(ids.getIds());
     }
 
     @DeleteMapping("/questions/{questionId}")
