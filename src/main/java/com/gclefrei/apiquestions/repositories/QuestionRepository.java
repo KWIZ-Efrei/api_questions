@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface QuestionRepository extends CrudRepository<Question, UUID> {
 
-    @Query(value = "SELECT * FROM question ORDER BY RANDOM() LIMIT :limit", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT * FROM question ORDER BY RANDOM() LIMIT :limit", nativeQuery = true)
     List<Question> getRandomQuestions(@Param("limit") int limit);
 
     List<Question> findByIdIn(List<UUID> ids);
