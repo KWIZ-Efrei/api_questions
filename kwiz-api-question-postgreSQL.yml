@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kwiz-postgres
+spec:
+  serviceName: kwiz-postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kwiz-postgres
+  template:
+    metadata:
+      labels:
+        app: kwiz-postgres
+    spec:
+      containers:
+      - name: kwiz-postgres
+        image: postgres:latest
+        env:
+        - name: POSTGRES_DB
+          value: questions
+        - name: POSTGRES_USER
+          value: jdbc_client
+        - name: POSTGRES_PASSWORD
+          value: kwiz_password
+        ports:
+        - containerPort: 5432
+          name: kwiz-postgres
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kwiz-postgres
+spec:
+  selector:
+    app: kwiz-postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432

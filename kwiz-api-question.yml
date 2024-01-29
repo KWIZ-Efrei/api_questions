@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kwiz-api-question
+spec:
+  selector:
+    matchLabels:
+      app: kwiz-api-question
+  template:
+    metadata:
+      labels:
+        app: kwiz-api-question
+    spec:
+      containers:
+        - name: kwiz-api-question
+          image: anthonypab/kwiz_api_question:v1.1-release
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JDBC_DATABASE_URL
+              value: jdbc:postgresql://kwiz-postgres:5432/questions
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_DATABASE
+              value: questions
+            - name: POSTGRES_USERNAME
+              value: jdbc_client
+            - name: POSTGRES_PASSWORD
+              value: kwiz_password
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kwiz-api-question
+spec:
+  selector:
+    app: kwiz-api-question
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
